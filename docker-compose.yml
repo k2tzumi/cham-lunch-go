@@ -10,5 +10,6 @@ services:
       - ./envs:/home/devuser/envs:cached
     ports:
       - "3000:3000"
+      - "5990:5990"
     privileged: true
     tty: true
