@@ -9,7 +9,9 @@ RUN apt-get install -y --no-install-recommends \
       zsh \
       less \
       vim \
-      wget
+      wget \
+      task-japanese \
+      locales-all
 ENV LANG=ja_JP.UTF-8 \
     LANGUAGE=ja_JP:ja\
     LC_ALL=ja_JP.UTF-8
