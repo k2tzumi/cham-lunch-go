@@ -1,0 +1,17 @@
+thumbs.db
+Thumbs.db
+.DS_Store
+.localized
+*.log
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+~$*
+*.tmp
+*.swp
+*~
+\#*
+.\#*

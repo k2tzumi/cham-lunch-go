@@ -1,0 +1,27 @@
+{
+  "name": "cham-lunch-go",
+  "dockerComposeFile": ["../docker-compose.yml"],
+  "service": "cham-lunch-go",
+  "shutdownAction": "stopCompose",
+  "workspaceFolder": "/home/devuser/workspace",
+  "extensions": [
+    "golang.go",
+    "766b.go-outliner",
+    "oderwat.indent-rainbow",
+    "njpwerner.autodocstring"
+  ],
+  "settings": {
+    "files.eol": "\n",
+    "go.useLanguageServer": true,
+    "[go]": {
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+      },
+      "editor.snippetSuggestions": "none"
+    },
+    "gopls": {
+      "formatting.gofumpt": true
+    }
+  }
+}

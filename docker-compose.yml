@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  cham-lunch-go:
+    container_name: cham-lunch-go
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./workspace:/home/devuser/workspace:cached
+      - ./envs:/home/devuser/envs:cached
+    ports:
+      - "3000:3000"
+    privileged: true
+    tty: true
