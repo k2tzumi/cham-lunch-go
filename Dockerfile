@@ -9,12 +9,14 @@ RUN apt-get install -y --no-install-recommends \
       zsh \
       less \
       vim \
-      locales-all
+      wget
 ENV LANG=ja_JP.UTF-8 \
     LANGUAGE=ja_JP:ja\
     LC_ALL=ja_JP.UTF-8
 RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
-
+RUN wget -O ~/vsls-reqs https://aka.ms/vsls-linux-prereq-script && \
+    chmod +x ~/vsls-reqs && \
+    ~/vsls-reqs
 RUN groupadd -g 999 devuser && \
     useradd -m -u 999 -g devuser -s /bin/zsh devuser
 

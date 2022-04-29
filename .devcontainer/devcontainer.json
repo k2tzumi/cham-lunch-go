@@ -5,6 +5,7 @@
   "shutdownAction": "stopCompose",
   "workspaceFolder": "/home/devuser/workspace",
   "extensions": [
+    "ms-vsliveshare.vsliveshare-pack",
     "golang.go",
     "766b.go-outliner",
     "oderwat.indent-rainbow",
