@@ -4,7 +4,10 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"os"
+	"reflect"
 	"testing"
+
+	"github.com/jarcoal/httpmock"
 )
 
 func TestFindOfficeCode(t *testing.T) {
@@ -44,5 +47,31 @@ func TestFindOfficeCode(t *testing.T) {
 		if (actualError == nil) == pattern.expectedError {
 			t.Errorf("pattern %s: want %t, actual %s", pattern.name, pattern.expectedError, actualError)
 		}
+	}
+}
+
+func TestGetArea(t *testing.T) {
+	httpmock.Activate()
+
+	f, err := os.Open("../../resources/area.json")
+	if err != nil {
+		t.Fatalf("resources not found error")
+	}
+	defer f.Close()
+
+	byteArray, _ := ioutil.ReadAll(f)
+
+	expected := &Area{}
+	json.Unmarshal(byteArray, &expected)
+
+	defer httpmock.DeactivateAndReset()
+	httpmock.RegisterResponder("GET", "https://www.jma.go.jp/bosai/common/const/area.json",
+		httpmock.NewBytesResponder(200, byteArray),
+	)
+
+	actual, _ := GetArea()
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Errorf("want %s, actual %s", expected, actual)
 	}
 }
