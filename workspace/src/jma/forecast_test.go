@@ -113,5 +113,5 @@ func TestIsWeekly(t *testing.T) {
 	json.Unmarshal(byteArray, &forecasts)
 
 	assert.False(t, forecasts[0].IsWeekly(), "天気予想の1件目は明後日までの詳細")
-	assert.True(t, forecasts[0].IsWeekly(), "天気予想の2件目は７日先まで")
+	assert.True(t, forecasts[1].IsWeekly(), "天気予想の2件目は７日先まで")
 }
