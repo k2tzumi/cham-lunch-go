@@ -50,7 +50,9 @@ func GetArea() (*Area, error) {
 
 	byteArray, _ := ioutil.ReadAll(resp.Body)
 	area := &Area{}
-	json.Unmarshal(byteArray, &area)
+	if err := json.Unmarshal(byteArray, &area); err != nil {
+		return nil, err
+	}
 
 	return area, nil
 }
