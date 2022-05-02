@@ -140,7 +140,9 @@ func GetForecast(officeCode string) ([]Forecast, error) {
 
 	byteArray, _ := ioutil.ReadAll(resp.Body)
 	var forecasts []Forecast
-	json.Unmarshal(byteArray, &forecasts)
+	if err := json.Unmarshal(byteArray, &forecasts); err != nil {
+		return forecasts, err
+	}
 
 	return forecasts, nil
 }
