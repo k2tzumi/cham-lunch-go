@@ -2,6 +2,8 @@ package jma
 
 import (
 	"encoding/json"
+	"io/ioutil"
+	"net/http"
 	"time"
 )
 
@@ -124,4 +126,21 @@ func (f *Forecast) GetWeeklyTempsForecast() []AreaTempsForecast {
 	}
 
 	return nil
+}
+
+// GetForecast は指定された officeCode の天気予想を取得する
+func GetForecast(officeCode string) ([]Forecast, error) {
+	url := "https://www.jma.go.jp/bosai/forecast/data/forecast/" + officeCode + ".json"
+
+	resp, err := http.Get(url)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	byteArray, _ := ioutil.ReadAll(resp.Body)
+	var forecasts []Forecast
+	json.Unmarshal(byteArray, &forecasts)
+
+	return forecasts, nil
 }
