@@ -11,7 +11,8 @@ RUN apt-get install -y --no-install-recommends \
       vim \
       wget \
       task-japanese \
-      locales-all
+      locales-all \
+      icu-devtools
 ENV LANG=ja_JP.UTF-8 \
     LANGUAGE=ja_JP:ja\
     LC_ALL=ja_JP.UTF-8
