@@ -117,18 +117,18 @@ func CreateExcel(forecast *Forecast, templatePath string) error {
 	return nil
 }
 
-func setSheetColoums[T any](f *ExtendFile, cellReference *CellReference, cellValues []T) error {
-	// return f.setSheetColoums(cellReference, convertAbstractSlice(cellValues))
-	for idx, cellValue := range cellValues {
-		// 右に展開
-		if err := f.SetCellRefValue(cellReference.Shift(idx, 0), cellValue); err != nil {
-			fmt.Println(err)
-			return err
-		}
-	}
+// func setSheetColoums[T any](f *ExtendFile, cellReference *CellReference, cellValues []T) error {
+// 	// return f.setSheetColoums(cellReference, convertAbstractSlice(cellValues))
+// 	for idx, cellValue := range cellValues {
+// 		// 右に展開
+// 		if err := f.SetCellRefValue(cellReference.Shift(idx, 0), cellValue); err != nil {
+// 			fmt.Println(err)
+// 			return err
+// 		}
+// 	}
 
-	return nil
-}
+// 	return nil
+// }
 
 type CellRangeAddress struct {
 	FirstCell *CellReference
