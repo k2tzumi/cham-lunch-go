@@ -34,7 +34,9 @@ func CreateExcel(forecast *Forecast, templatePath string) error {
 	backupName := "origin_backup"
 	bakupIndex := f.NewSheet(backupName)
 	sheet := "template"
-	f.CopySheet(f.GetSheetIndex(sheet), bakupIndex)
+	if err := f.CopySheet(f.GetSheetIndex(sheet), bakupIndex); err != nil {
+		return err
+	}
 
 	// DefinedNameにセットするvalues
 	weeklyForecast := forecast.TimeSeries[0]
@@ -76,7 +78,9 @@ func CreateExcel(forecast *Forecast, templatePath string) error {
 		}
 		// 複数列のセルに書き込む
 		if columnsValue, ok := columnsStringValues[definedName.Name]; ok {
-			f.setSheetColoums(cellRangeAddress.FirstCell, convertAbstractSlice(columnsValue))
+			if err := f.setSheetColoums(cellRangeAddress.FirstCell, convertAbstractSlice(columnsValue)); err != nil {
+				return err
+			}
 			// switch value := columnsValue.(type) {
 			// case []string:
 			// 	// f.setSheetColoums(cellRangeAddress.FirstCell, value)
@@ -92,9 +96,13 @@ func CreateExcel(forecast *Forecast, templatePath string) error {
 	// エリアコードでシート名を新規作成
 	newIndex := f.NewSheet(areaCode)
 	// シートをコピーする
-	f.CopySheet(f.GetSheetIndex(sheet), newIndex)
+	if err := f.CopySheet(f.GetSheetIndex(sheet), newIndex); err != nil {
+		return err
+	}
 	// バックアップから戻す
-	f.CopySheet(bakupIndex, f.GetSheetIndex(sheet))
+	if err := f.CopySheet(bakupIndex, f.GetSheetIndex(sheet)); err != nil {
+		return err
+	}
 	// バックアップを削除する
 	f.DeleteSheet(backupName)
 
