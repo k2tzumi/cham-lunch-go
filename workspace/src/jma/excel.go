@@ -65,7 +65,6 @@ func CreateExcel(forecast *Forecast, templatePath string) error {
 		"tempsMins":     forecast.GetWeeklyTempsForecast()[0].TempsMin,
 	}
 
-	fmt.Println(len(f.GetDefinedName()))
 	for _, definedName := range f.GetDefinedName() {
 		cellRangeAddress := NewCellRangeAddress(definedName.RefersTo)
 		// 一つにセルに書き込む
