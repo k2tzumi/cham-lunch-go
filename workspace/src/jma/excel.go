@@ -13,8 +13,6 @@ type ExtendFile struct {
 	*excelize.File
 }
 
-// type ExtendFile excelize.File
-
 func CreateExcel(forecast *Forecast, templatePath string) error {
 	f, err := OpenExtendFile(templatePath)
 	if err != nil {
@@ -80,15 +78,6 @@ func CreateExcel(forecast *Forecast, templatePath string) error {
 			if err := f.setSheetColoums(cellRangeAddress.FirstCell, convertAbstractSlice(columnsValue)); err != nil {
 				return err
 			}
-			// switch value := columnsValue.(type) {
-			// case []string:
-			// 	// f.setSheetColoums(cellRangeAddress.FirstCell, value)
-			// 	setSheetColoums(f, cellRangeAddress.FirstCell, value)
-			// case []WeatherCode:
-			// 	setSheetColoums(f, cellRangeAddress.FirstCell, value)
-			// case []*time.Time:
-			// 	setSheetColoums(f, cellRangeAddress.FirstCell, value)
-			// }
 		}
 	}
 
@@ -116,19 +105,6 @@ func CreateExcel(forecast *Forecast, templatePath string) error {
 
 	return nil
 }
-
-// func setSheetColoums[T any](f *ExtendFile, cellReference *CellReference, cellValues []T) error {
-// 	// return f.setSheetColoums(cellReference, convertAbstractSlice(cellValues))
-// 	for idx, cellValue := range cellValues {
-// 		// 右に展開
-// 		if err := f.SetCellRefValue(cellReference.Shift(idx, 0), cellValue); err != nil {
-// 			fmt.Println(err)
-// 			return err
-// 		}
-// 	}
-
-// 	return nil
-// }
 
 type CellRangeAddress struct {
 	FirstCell *CellReference
