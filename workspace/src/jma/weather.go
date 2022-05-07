@@ -1,18 +1,26 @@
 package jma
 
-type WeatherCode [2]string
-
-const (
-	CLEAR WeatherCode = {"100", "晴れ"}
-	// PARTLY_CLOUDY WeatherCode = "101"
+import (
+	_ "embed"
+	"encoding/json"
+	"fmt"
 )
 
-func (w WeatherCode) GetName() string {
-	switch w {
-	case CLEAR:
-		return "晴"
-	case PARTLY_CLOUDY:
+type WeatherCode string
 
+// Implement Stringer
+var _ fmt.Stringer = WeatherCode("")
 
+//go:embed forecast_const.json
+var forecastConstJSON []byte
+var forecastConst map[string][]string
+
+func init() {
+	if err := json.Unmarshal(forecastConstJSON, &forecastConst); err != nil {
+		panic("Can not load forecast_const.json")
 	}
+}
+
+func (w WeatherCode) String() string {
+	return forecastConst[string(w)][3]
 }

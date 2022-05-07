@@ -30,21 +30,29 @@ func main() {
 	if err != nil {
 		panic("Not found")
 	}
-	fmt.Println(cityName, officeCode)
 	forecasts, err := jma.GetForecast(officeCode)
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Println(forecasts[1].PublishingOffice)
-	fmt.Println(forecasts[1].ReportDatetime.Date())
-
 	for _, forecast := range forecasts {
 		if forecast.IsWeekly() {
-			fmt.Println(forecast.GetWeeklyWeatherForecast()[0].AreaName)
-			fmt.Println(forecast.GetWeeklyWeatherForecast()[0].WeatherCodes)
-			fmt.Println(forecast.GetWeeklyTempsForecast()[0].AreaName)
-			fmt.Println(forecast.GetWeeklyTempsForecast()[0].TempsMax)
+			fmt.Printf(
+				"%sの天気。%sが発表、%sの%s時点の予報\n",
+				cityName,
+				forecasts[1].PublishingOffice,
+				forecast.GetWeeklyWeatherForecast()[0].AreaName,
+				forecasts[1].ReportDatetime.Format("2006/1/2 15:04"),
+			)
+			for idx, weatherCode := range forecast.GetWeeklyWeatherForecast()[0].WeatherCodes {
+				fmt.Printf(
+					"%sは%s ／ 最低気温%s 最高気温%s\n",
+					forecast.TimeSeries[0].TimeDefines[idx].Format("1/2"),
+					weatherCode.String(),
+					forecast.GetWeeklyTempsForecast()[0].TempsMin[idx],
+					forecast.GetWeeklyTempsForecast()[0].TempsMax[idx],
+				)
+			}
 		}
 	}
 }

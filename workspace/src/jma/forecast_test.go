@@ -48,10 +48,10 @@ func TestGetWeeklyWeatherForecast(t *testing.T) {
 	patterns := []struct {
 		publishingOffice     string
 		officeCode           string
-		expectedWeatherCodes []string
+		expectedWeatherCodes []WeatherCode
 	}{
-		{"静岡地方気象台", "220000", []string{"101", "100", "101", "101", "201", "201", "201"}},
-		{"熊谷地方気象台", "110000", []string{"110", "101", "101", "101", "201", "201", "201"}},
+		{"静岡地方気象台", "220000", []WeatherCode{"101", "100", "101", "101", "201", "201", "201"}},
+		{"熊谷地方気象台", "110000", []WeatherCode{"110", "101", "101", "101", "201", "201", "201"}},
 	}
 
 	for _, pattern := range patterns {
