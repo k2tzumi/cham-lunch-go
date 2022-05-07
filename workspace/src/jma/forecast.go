@@ -24,9 +24,9 @@ type TimeSeries struct {
 
 type AreaWeatherForecast struct {
 	AreaInfo      `json:"area"`
-	WeatherCodes  []string `json:"weatherCodes,omitempty"`
-	Pops          []string `json:"pops,omitempty"`
-	Reliabilities []string `json:"reliabilities,omitempty"`
+	WeatherCodes  []WeatherCode `json:"weatherCodes,omitempty"`
+	Pops          []string      `json:"pops,omitempty"`
+	Reliabilities []string      `json:"reliabilities,omitempty"`
 }
 
 type AreaTempsForecast struct {
@@ -45,13 +45,13 @@ type AreaInfo struct {
 }
 
 type Average struct {
-	AreaAverages *AreaAverage `json:"areas"`
+	AreaAverages *AreaAverage `json:"areas,omitempty"`
 }
 
 type AreaAverage struct {
-	AreaInfo `json:"area"`
-	Min      string `json:"min"`
-	Max      string `json:"max"`
+	AreaInfo `json:"area,omitempty"`
+	Min      string `json:"min,omitempty"`
+	Max      string `json:"max,omitempty"`
 }
 
 func (f *Forecast) IsWeekly() bool {
@@ -107,7 +107,6 @@ func (f *Forecast) GetWeeklyWeatherForecast() []AreaWeatherForecast {
 
 			if weatherAreas != nil {
 				return weatherAreas
-
 			}
 		}
 	}

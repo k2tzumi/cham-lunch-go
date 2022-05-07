@@ -12,6 +12,9 @@
     "njpwerner.autodocstring"
   ],
   "settings": {
+    "liveshare.accessibility.voiceEnabled": true,
+    "liveshare.accessibility.soundsEnabled": true,
+    "liveshare.accessibility.accessibilityFeaturesEnabled": true,
     "files.eol": "\n",
     "go.useLanguageServer": true,
     "[go]": {
