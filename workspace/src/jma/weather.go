@@ -3,9 +3,13 @@ package jma
 import (
 	_ "embed"
 	"encoding/json"
+	"fmt"
 )
 
 type WeatherCode string
+
+// Implement Stringer
+var _ fmt.Stringer = WeatherCode("")
 
 //go:embed forecast_const.json
 var forecastConstJSON []byte
@@ -17,6 +21,6 @@ func init() {
 	}
 }
 
-func (w WeatherCode) GetName() string {
+func (w WeatherCode) String() string {
 	return forecastConst[string(w)][3]
 }

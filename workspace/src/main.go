@@ -48,7 +48,7 @@ func main() {
 				fmt.Printf(
 					"%sは%s ／ 最低気温%s 最高気温%s\n",
 					forecast.TimeSeries[0].TimeDefines[idx].Format("1/2"),
-					weatherCode.GetName(),
+					weatherCode.String(),
 					forecast.GetWeeklyTempsForecast()[0].TempsMin[idx],
 					forecast.GetWeeklyTempsForecast()[0].TempsMax[idx],
 				)
