@@ -48,9 +48,9 @@ func CreateExcel(forecast *Forecast, templatePath string) error {
 		"areaName":         weeklyForecast.WeatherAreas()[0].AreaName,
 		"reportDatetime":   reportDatetime,
 		"publishingOffice": forecast.PublishingOffice,
-		"averageArea":      forecast.TempAverage.AreaAverages.AreaName,
-		"tempAverageMax":   forecast.TempAverage.AreaAverages.Max,
-		"tempAverageMin":   forecast.TempAverage.AreaAverages.Min,
+		// "averageArea":      forecast.TempAverage.AreaAverages.AreaName,
+		// "tempAverageMax":   forecast.TempAverage.AreaAverages.Max,
+		// "tempAverageMin":   forecast.TempAverage.AreaAverages.Min,
 	}
 
 	// 複数列のセルに書き込む値

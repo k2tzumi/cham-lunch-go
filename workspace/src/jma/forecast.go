@@ -10,11 +10,11 @@ import (
 // https://www.jma.go.jp/bosai/forecast/data/forecast/110000.json
 
 type Forecast struct {
-	PublishingOffice string        `json:"publishingOffice"`
-	ReportDatetime   *time.Time    `json:"reportDatetime"`
-	TimeSeries       []*TimeSeries `json:"timeSeries"`
-	TempAverage      *Average      `json:"tempAverage,omitempty"`
-	PrecipAverage    *Average      `json:"precipAverage,omitempty"`
+	PublishingOffice string           `json:"publishingOffice"`
+	ReportDatetime   *time.Time       `json:"reportDatetime"`
+	TimeSeries       []*TimeSeries    `json:"timeSeries"`
+	TempAverage      *json.RawMessage `json:"tempAverage,omitempty"`
+	PrecipAverage    *json.RawMessage `json:"precipAverage,omitempty"`
 }
 
 type TimeSeries struct {
